@@ -1,26 +1,26 @@
 import { injectable, inject } from 'tsyringe';
+import AppError from '@shared/errors/AppError';
 import Challenge from '@modules/challenges/infra/typeorm/entities/Challenge';
 import IChallengesRepository from '@modules/challenges/repositories/IChallengesRepository';
-import ICreateChallengeDTO from '@modules/challenges/dtos/ICreateChallengeDTO';
 
 @injectable()
-class CreateChallengeService {
+class GetChallengeByDescription {
   constructor(
     @inject('ChallengesRepository')
     private challengesRepository: IChallengesRepository,
   ) {}
 
-  public async execute({
-    title,
-    description,
-  }: ICreateChallengeDTO): Promise<Challenge> {
-    const challenge = await this.challengesRepository.create({
-      title,
+  public async execute(description: string): Promise<Challenge> {
+    const challenge = await this.challengesRepository.findByDescription(
       description,
-    });
+    );
+
+    if (!challenge) {
+      throw new AppError('Challenge not found', 400);
+    }
 
     return challenge;
   }
 }
 
-export default CreateChallengeService;
+export default GetChallengeByDescription;

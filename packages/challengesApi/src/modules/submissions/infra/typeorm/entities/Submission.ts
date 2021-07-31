@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToOne,
+  ManyToOne,
   JoinColumn,
 } from 'typeorm';
 
@@ -27,7 +27,7 @@ class Submission {
   @Column()
   grade: number;
 
-  @OneToOne(() => Challenge)
+  @ManyToOne(() => Challenge)
   @JoinColumn({ name: 'challenge_id' })
   challengeId?: Challenge;
 

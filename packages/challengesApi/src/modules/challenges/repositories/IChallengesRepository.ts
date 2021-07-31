@@ -5,6 +5,7 @@ export default interface IChallengesRepository {
   create(data: ICreateChallengeDTO): Promise<Challenge>;
   update(challenge: Challenge): Promise<Challenge>;
   delete(challenge_id: string): Promise<void>;
+  findById(challenge_id: string): Promise<Challenge | undefined>;
   findByDescription(description: string): Promise<Challenge | undefined>;
   findByTitle(title: string): Promise<Challenge | undefined>;
   listAll(take: number, skip: number): Promise<Challenge[]>;

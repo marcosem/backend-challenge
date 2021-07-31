@@ -48,6 +48,14 @@ class FakeChallengesRepository implements IChallengesRepository {
     return findChallenge;
   }
 
+  public async findById(challenge_id: string): Promise<Challenge | undefined> {
+    const findChallenge = this.challenges.find(
+      chal => chal.id === challenge_id,
+    );
+
+    return findChallenge;
+  }
+
   public async findByTitle(title: string): Promise<Challenge | undefined> {
     const findChallenge = this.challenges.find(chal => chal.title === title);
 

@@ -35,7 +35,6 @@ class ChallengesRepository implements IChallengesRepository {
   public async update(challenge: Challenge): Promise<Challenge> {
     await this.ormRepository.save(challenge);
 
-    // Return what is saved with user relationship attached.
     let savedChallenge = await this.ormRepository.findOne({
       where: { id: challenge.id },
     });
@@ -55,6 +54,14 @@ class ChallengesRepository implements IChallengesRepository {
     if (challenge) {
       await this.ormRepository.remove(challenge);
     }
+  }
+
+  public async findById(challenge_id: string): Promise<Challenge | undefined> {
+    const findChallenge = await this.ormRepository.findOne({
+      where: { id: challenge_id },
+    });
+
+    return findChallenge;
   }
 
   public async findByDescription(
