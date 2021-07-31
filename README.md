@@ -55,12 +55,12 @@ Neste projeto, está incluído o **[corrections](packages/corrections) (serviço
 
 **Operações necessárias**
 
-- [ ] Criar
-- [ ] Remover
-- [ ] Editar
-- [ ] Listar
-  - [ ] Paginação
-  - [ ] Busca por título e descrição
+- [x] Criar
+- [x] Remover
+- [x] Editar
+- [x] Listar
+  - [x] Paginação
+  - [x] Busca por título e descrição
 
 ### 📓 Submissão
 
