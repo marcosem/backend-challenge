@@ -43,7 +43,7 @@ Neste projeto, está incluído o **[corrections](packages/corrections) (serviço
   - :warning: **Caso não exista o desafio** ou a **url não seja um repositório do github** a submissão é registrada com status `Error` e um erro é retornado ao usuário, dando fim a esse fluxo;
 - O serviço [corrections](packages/corrections) é notificado e retorna a correção da submissão;
 - O status e a nota da submissão são **atualizados**;
-  
+
 ### ⚔️ Desafio
 
 | Atributo        | Tipo     |
@@ -141,7 +141,7 @@ Mutation {
 ```
 
 ### :notebook: To-do list
-- [ ] Fazer o fork do projeto
+- [x] Fazer o fork do projeto
 - [ ] Configurar ambiente de desenvolvimento (inclusive executar o serviço de [corrections](packages/corrections))
 - [ ] Criar uma [API GraphQL](https://docs.nestjs.com/graphql/quick-start) com o [contexto](#-contexto) acima utilizando Typescript
 - [ ] Fazer a integração com o serviço de [corrections](packages/corrections) através do Apache Kafka
