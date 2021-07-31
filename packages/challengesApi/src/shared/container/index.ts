@@ -1,5 +1,7 @@
 import { container } from 'tsyringe';
 
+import '@modules/submissions/providers';
+
 import IChallengesRepository from '@modules/challenges/repositories/IChallengesRepository';
 import ChallengesRepository from '@modules/challenges/infra/typeorm/repositories/ChallengesRespository';
 
