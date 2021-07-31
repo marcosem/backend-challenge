@@ -55,7 +55,7 @@ class FakeChallengesRepository implements IChallengesRepository {
   }
 
   public async listAll(take = -1, skip = -1): Promise<Challenge[]> {
-    if (take < 0 && skip < 0) {
+    if (take < 0 || skip < 0) {
       return this.challenges;
     }
 
