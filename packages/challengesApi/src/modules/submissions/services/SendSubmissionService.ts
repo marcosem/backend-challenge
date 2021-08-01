@@ -53,20 +53,12 @@ class SendSubmissionService {
       throw new AppError(errorMsg, 400);
     }
 
-    const sentSubmission = await this.kafkaProvider.sendMessage({
+    await this.kafkaProvider.sendMessage({
       submissionId: newSubmission.id,
       repositoryUrl: newSubmission.repository_url,
     });
 
-    const updateSubmission = newSubmission;
-    updateSubmission.grade = sentSubmission.grade;
-    updateSubmission.status = sentSubmission.status;
-
-    const submission = await this.submissionsRepository.update(
-      updateSubmission,
-    );
-
-    return submission;
+    return newSubmission;
   }
 }
 

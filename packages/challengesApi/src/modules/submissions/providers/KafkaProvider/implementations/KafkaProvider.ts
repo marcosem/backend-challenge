@@ -3,14 +3,14 @@ import IKafkaProvider, {
   ICorrectLessonResponse,
 } from '@modules/submissions/providers/KafkaProvider/models/IKafkaProvider';
 
-import { Kafka, Producer, Consumer } from 'kafkajs';
+import { Kafka, Producer } from 'kafkajs';
 
 class KafkaProvider implements IKafkaProvider {
   private kafka: Kafka;
 
   private producer: Producer;
 
-  private consumer: Consumer;
+  // private consumer: Consumer;
 
   constructor() {
     this.kafka = new Kafka({
@@ -19,7 +19,7 @@ class KafkaProvider implements IKafkaProvider {
     });
 
     this.producer = this.kafka.producer();
-    this.consumer = this.kafka.consumer({ groupId: 'challenge-consumer' });
+    // this.consumer = this.kafka.consumer({ groupId: 'challenge-consumer' });
   }
 
   public async sendMessage({
@@ -33,6 +33,14 @@ class KafkaProvider implements IKafkaProvider {
       messages: [{ value: JSON.stringify({ submissionId, repositoryUrl }) }],
     });
 
+    const submission: ICorrectLessonResponse = {
+      submissionId,
+      repositoryUrl,
+      grade: 0,
+      status: 'Pending',
+    };
+
+    /*
     await this.consumer.connect();
     await this.consumer.subscribe({ topic: 'challenge.correction' });
 
@@ -54,8 +62,9 @@ class KafkaProvider implements IKafkaProvider {
         status: 'Pending',
       };
     }
+    */
 
-    return response;
+    return submission;
   }
 }
 
