@@ -38,6 +38,16 @@ class FakeSubmissionsRepository implements ISubmissionsRepository {
     return submission;
   }
 
+  public async findById(
+    submission_id: string,
+  ): Promise<Submission | undefined> {
+    const findSubmission = this.submissions.find(
+      sub => sub.id === submission_id,
+    );
+
+    return findSubmission;
+  }
+
   public async listAll({
     take = -1,
     skip = -1,

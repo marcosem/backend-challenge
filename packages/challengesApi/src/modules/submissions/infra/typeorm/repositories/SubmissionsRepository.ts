@@ -53,6 +53,16 @@ class SubmissionsRepository implements ISubmissionsRepository {
     return savedSubmission;
   }
 
+  public async findById(
+    submission_id: string,
+  ): Promise<Submission | undefined> {
+    const findSubmission = await this.ormRepository.findOne({
+      where: { id: submission_id },
+    });
+
+    return findSubmission;
+  }
+
   public async listAll({
     take = -1,
     skip = -1,
