@@ -5,7 +5,7 @@ import GetChallengesListService from '@modules/challenges/services/GetChallenges
 let fakeChallengeRepository: FakeChallengesRepository;
 let getChallengeList: GetChallengesListService;
 
-describe('GetChallengeList', () => {
+describe('GetChallengesList', () => {
   beforeEach(() => {
     fakeChallengeRepository = new FakeChallengesRepository();
 
