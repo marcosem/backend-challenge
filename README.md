@@ -95,7 +95,7 @@ Além dos requisitos levantados acima, iremos olhar para os seguintes critérios
 ### 😎 Seria legal
 
 - **Utilizar [Nest.js](https://nestjs.com/)**
-- Custom Scalar Types
+- [x] Custom Scalar Types
 
 ## :rocket: Instruções
 
@@ -146,7 +146,7 @@ Mutation {
 - [x] Fazer o fork do projeto
 - [x] Start docker containers
 - [x] Configurar ambiente de desenvolvimento (inclusive executar o serviço de [corrections](packages/corrections))
-- [ ] Criar uma [API GraphQL](https://docs.nestjs.com/graphql/quick-start) com o [contexto](#-contexto) acima utilizando Typescript
+- [x] Criar uma [API GraphQL](https://docs.nestjs.com/graphql/quick-start) com o [contexto](#-contexto) acima utilizando Typescript
 - [ ] Fazer a integração com o serviço de [corrections](packages/corrections) através do Apache Kafka
 - [ ] Incluir no README as instruções de instalação do projeto
 
