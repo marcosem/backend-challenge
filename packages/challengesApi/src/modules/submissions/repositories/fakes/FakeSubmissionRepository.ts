@@ -1,5 +1,6 @@
 import Submission from '@modules/submissions/infra/typeorm/entities/Submission';
 import ICreateSubmissionDTO from '@modules/submissions/dtos/ICreateSubmissionDTO';
+import IListSubmissionsDTO from '@modules/submissions/dtos/IListSubmissionsDTO';
 import ISubmissionsRepository from '@modules/submissions/repositories/ISubmissionsRepository';
 import { isWithinInterval } from 'date-fns';
 import { v4 } from 'uuid';
@@ -37,32 +38,48 @@ class FakeSubmissionsRepository implements ISubmissionsRepository {
     return submission;
   }
 
-  public async findByChallengeId(
-    challenge_id: string,
-  ): Promise<Submission | undefined> {
-    const findSubmission = this.submissions.find(
-      sub => sub.challenge_id === challenge_id,
-    );
-
-    return findSubmission;
-  }
-
-  public async listAll(take = -1, skip = -1): Promise<Submission[]> {
-    if (take < 0 && skip < 0) {
+  public async listAll({
+    take = -1,
+    skip = -1,
+    challenge_id,
+    date_start,
+    date_end,
+    status,
+  }: IListSubmissionsDTO): Promise<Submission[]> {
+    if (
+      (take < 0 || skip < 0) &&
+      !challenge_id &&
+      (!date_start || !date_end) &&
+      !status
+    ) {
       return this.submissions;
     }
 
-    const paginatedList = this.submissions.slice(skip, take + skip);
-    return paginatedList;
-  }
+    const fullFilteredList = this.submissions.filter(sub => {
+      if (
+        (!challenge_id ||
+          (challenge_id && sub.challenge_id === challenge_id)) &&
+        (!date_start ||
+          !date_end ||
+          (date_start &&
+            date_end &&
+            isWithinInterval(sub.created_at, {
+              start: date_start,
+              end: date_end,
+            }))) &&
+        (!status || (status && sub.status === status))
+      ) {
+        return true;
+      }
+      return false;
+    });
+    let filteredSubmissions;
 
-  public async listByDate(
-    dateStart: Date,
-    dateEnd: Date,
-  ): Promise<Submission[]> {
-    const filteredSubmissions = this.submissions.filter(sub =>
-      isWithinInterval(sub.created_at, { start: dateStart, end: dateEnd }),
-    );
+    if (take < 0 && skip < 0) {
+      filteredSubmissions = fullFilteredList;
+    } else {
+      filteredSubmissions = fullFilteredList.slice(skip, take + skip);
+    }
 
     return filteredSubmissions;
   }

@@ -1,8 +1,8 @@
 import { getRepository, Repository, Between } from 'typeorm';
 import Submission from '@modules/submissions/infra/typeorm/entities/Submission';
 import ICreateSubmissionDTO from '@modules/submissions/dtos/ICreateSubmissionDTO';
+import IListSubmissionsDTO from '@modules/submissions/dtos/IListSubmissionsDTO';
 import ISubmissionsRepository from '@modules/submissions/repositories/ISubmissionsRepository';
-// import { isWithinInterval } from 'date-fns';
 
 class SubmissionsRepository implements ISubmissionsRepository {
   private ormRepository: Repository<Submission>;
@@ -53,26 +53,35 @@ class SubmissionsRepository implements ISubmissionsRepository {
     return savedSubmission;
   }
 
-  public async findByChallengeId(
-    challenge_id: string,
-  ): Promise<Submission | undefined> {
-    const submission = await this.ormRepository.findOne({
-      where: { challenge_id },
-      relations: ['challengeId'],
-    });
-
-    return submission;
-  }
-
-  public async listAll(take = -1, skip = -1): Promise<Submission[]> {
+  public async listAll({
+    take = -1,
+    skip = -1,
+    challenge_id,
+    date_start,
+    date_end,
+    status,
+  }: IListSubmissionsDTO): Promise<Submission[]> {
     let submissionList;
 
-    if (take < 0 || skip < 0) {
+    if (
+      (take < 0 || skip < 0) &&
+      !challenge_id &&
+      (!date_start || !date_end) &&
+      !status
+    ) {
       submissionList = await this.ormRepository.find({
         relations: ['challengeId'],
       });
     } else {
+      const filter = {
+        challenge_id,
+        created_at:
+          date_start && date_end ? Between(date_start, date_end) : undefined,
+        status,
+      };
+
       const [result] = await this.ormRepository.findAndCount({
+        where: filter,
         relations: ['challengeId'],
         take,
         skip,
@@ -82,20 +91,6 @@ class SubmissionsRepository implements ISubmissionsRepository {
     }
 
     return submissionList;
-  }
-
-  public async listByDate(
-    dateStart: Date,
-    dateEnd: Date,
-  ): Promise<Submission[]> {
-    const filteredSubmissions = await this.ormRepository.find({
-      where: {
-        created_at: Between(dateStart, dateEnd),
-      },
-      relations: ['challengeId'],
-    });
-
-    return filteredSubmissions;
   }
 }
 
