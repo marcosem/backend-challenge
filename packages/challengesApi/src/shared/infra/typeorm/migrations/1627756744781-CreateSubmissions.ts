@@ -26,8 +26,8 @@ export default class CreateSubmissions1627756744781
           {
             name: 'status',
             type: 'enum',
-            enum: ['pending', 'error', 'done'],
-            default: "'pending'",
+            enum: ['Pending', 'Error', 'Done'],
+            default: "'Pending'",
           },
 
           {
