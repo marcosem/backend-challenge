@@ -3,7 +3,7 @@ import Challenge from '@modules/challenges/infra/typeorm/entities/Challenge';
 import IChallengesRepository from '@modules/challenges/repositories/IChallengesRepository';
 
 @injectable()
-class UpdateChallengeService {
+class GetChallengesListService {
   constructor(
     @inject('ChallengesRepository')
     private challengesRepository: IChallengesRepository,
@@ -16,4 +16,4 @@ class UpdateChallengeService {
   }
 }
 
-export default UpdateChallengeService;
+export default GetChallengesListService;
