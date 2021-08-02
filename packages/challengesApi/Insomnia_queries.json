@@ -1,0 +1,266 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2021-08-02T00:35:36.295Z",
+  "__export_source": "insomnia.desktop.app:v2021.4.1",
+  "resources": [
+    {
+      "_id": "req_76d62acc824242f3b2328043edc1a45a",
+      "parentId": "fld_5bb5ff41d0634f7396994b19230be016",
+      "modified": 1627855828868,
+      "created": 1627756382036,
+      "url": "{{ _.baseUrl }}/graphql",
+      "name": "Create Challenge",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/graphql",
+        "text": "{\"query\":\"mutation {\\n  createChallenge(title: \\\"Challenge #3\\\", description: \\\"Description #3\\\") {\\n    id,title,description,created_at,updated_at\\n  }\\n}\"}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_b78b7db6653d492eabffb444edefb39b"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1627756382078,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_5bb5ff41d0634f7396994b19230be016",
+      "parentId": "wrk_b6eb90c0c2e64b76b278e26788be070b",
+      "modified": 1627855980374,
+      "created": 1627756253625,
+      "name": "Challenges",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1627756253725,
+      "_type": "request_group"
+    },
+    {
+      "_id": "wrk_b6eb90c0c2e64b76b278e26788be070b",
+      "parentId": null,
+      "modified": 1627756235270,
+      "created": 1627756235270,
+      "name": "Challenge",
+      "description": "",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "req_9d6731a5503b4dccbf9bab4fa412c174",
+      "parentId": "fld_5bb5ff41d0634f7396994b19230be016",
+      "modified": 1627855655855,
+      "created": 1627854226048,
+      "url": "{{ _.baseUrl }}/graphql",
+      "name": "Update Challenge",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/graphql",
+        "text": "{\"query\":\"mutation {\\n  updateChallenge(id: \\\"fe5d5b24-6254-4685-b98f-454902d4c577\\\", title: \\\"Modified Title\\\", description: \\\"Modified Description\\\" ) {\\n    id,title,description,created_at,updated_at\\n  }\\n}\"}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_67aca11b570246f184e3ffeda33666d3"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1627756382028,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_38f9ed0914c742488176da4404f094eb",
+      "parentId": "fld_5bb5ff41d0634f7396994b19230be016",
+      "modified": 1627856025812,
+      "created": 1627855123582,
+      "url": "{{ _.baseUrl }}/graphql",
+      "name": "Delete Challenge",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/graphql",
+        "text": "{\"query\":\"mutation {\\n  deleteChallenge(id: \\\"fe5d5b24-6254-4685-b98f-454902d4c577\\\" ) {\\n     id,title,description,created_at,updated_at\\n  }\\n}\"}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_e1b2cbb5787040e18747966a9f326b43"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1627756381978,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_a80dfce2675f405580c9ffdc7fccb622",
+      "parentId": "fld_5bb5ff41d0634f7396994b19230be016",
+      "modified": 1627864244702,
+      "created": 1627855810156,
+      "url": "{{ _.baseUrl }}/graphql",
+      "name": "List Challenges",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/graphql",
+        "text": "{\"query\":\"query {\\n  challenges(take: 1, skip: 1) {id, title, description, created_at, updated_at}\\n}\"}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_c93db1dc402d4e248db14ad26bfb5033"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1627756381928,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_e47f1748c6ad4d06baaf3a8247d74014",
+      "parentId": "fld_0af91912cc5f49a0beb558055160814c",
+      "modified": 1627864125984,
+      "created": 1627855997854,
+      "url": "{{ _.baseUrl }}/graphql",
+      "name": "Send Submission",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/graphql",
+        "text": "{\"query\":\"mutation {\\n  answerChallenge(challenge_id: \\\"6919e1f5-b466-4882-8ac6-d0565ce8d0a7\\\", repository_url: \\\"https://github.com/marcosem/backend-challenge\\\") {\\n    id, challenge_id, challengeId { title, description}, repository_url, status, grade, created_at, updated_at\\n  }\\n}\"}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_1c32a4c8ce904feb87667c4c08990bf9"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1627855997854,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_0af91912cc5f49a0beb558055160814c",
+      "parentId": "wrk_b6eb90c0c2e64b76b278e26788be070b",
+      "modified": 1627855978008,
+      "created": 1627855970304,
+      "name": "Submissions",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1627756253675,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_919afed583fe48b9bd799d4ba57ef609",
+      "parentId": "fld_0af91912cc5f49a0beb558055160814c",
+      "modified": 1627864450264,
+      "created": 1627863920626,
+      "url": "{{ _.baseUrl }}/graphql",
+      "name": "List Submissions",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/graphql",
+        "text": "{\"query\":\"query {\\n  answers(take: -1, skip: -1) {id, challenge_id, challengeId { title, description }, repository_url, grade, status, created_at, updated_at}\\n}\"}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_e5cd3273e3284bc898cc9f0255ae56cd"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1627855997804,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "env_44cc8590b5b85fdb0cf8f9c0c092e63dc877928d",
+      "parentId": "wrk_b6eb90c0c2e64b76b278e26788be070b",
+      "modified": 1627853685226,
+      "created": 1627756235618,
+      "name": "Base Environment",
+      "data": { "baseUrl": "http://localhost:3333" },
+      "dataPropertyOrder": { "&": ["baseUrl"] },
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1627756235619,
+      "_type": "environment"
+    },
+    {
+      "_id": "jar_44cc8590b5b85fdb0cf8f9c0c092e63dc877928d",
+      "parentId": "wrk_b6eb90c0c2e64b76b278e26788be070b",
+      "modified": 1627756235636,
+      "created": 1627756235636,
+      "name": "Default Jar",
+      "cookies": [],
+      "_type": "cookie_jar"
+    },
+    {
+      "_id": "spc_efd000dad13748ba817767a7b13b6cc7",
+      "parentId": "wrk_b6eb90c0c2e64b76b278e26788be070b",
+      "modified": 1627756235278,
+      "created": 1627756235278,
+      "fileName": "Challenge",
+      "contents": "",
+      "contentType": "yaml",
+      "_type": "api_spec"
+    }
+  ]
+}
