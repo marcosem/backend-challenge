@@ -2,7 +2,6 @@ import 'reflect-metadata';
 import express, { Request, Response, NextFunction } from 'express';
 import { graphqlHTTP } from 'express-graphql';
 import cors from 'cors';
-// import { errors } from 'celebrate';
 import 'express-async-errors';
 import '@shared/infra/typeorm';
 import '@shared/container';
@@ -26,8 +25,11 @@ app.use(
   }),
 );
 
+// Need to wait application start before start listening kafka, due the syringed dependances
 const kafkaConsumer = new KafkaConsumer();
-kafkaConsumer.startConsumer();
+setTimeout(() => {
+  kafkaConsumer.startConsumer();
+}, 2000);
 
 // app.use(errors());
 app.use((err: Error, req: Request, res: Response, _: NextFunction) => {
