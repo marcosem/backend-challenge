@@ -24,7 +24,7 @@ const schema = buildSchema(`
   }
   type Query {
     challenges(title: String, description: String, take: Int, skip: Int): [Challenge!]!
-    answers(challenge_id: ID, date_start: Date, date_end: Date, status: String, take: Int, skip: Int): [Answer!]!
+    answers(challenge_id: String, date_start: Date, date_end: Date, status: String, take: Int, skip: Int): [Answer!]!
   }
   type Mutation {
     createChallenge(title: String!, description: String!): Challenge!
