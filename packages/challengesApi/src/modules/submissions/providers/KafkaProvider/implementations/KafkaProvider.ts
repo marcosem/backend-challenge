@@ -10,8 +10,6 @@ class KafkaProvider implements IKafkaProvider {
 
   private producer: Producer;
 
-  // private consumer: Consumer;
-
   constructor() {
     this.kafka = new Kafka({
       clientId: 'challengesApi',
@@ -19,7 +17,6 @@ class KafkaProvider implements IKafkaProvider {
     });
 
     this.producer = this.kafka.producer();
-    // this.consumer = this.kafka.consumer({ groupId: 'challenge-consumer' });
   }
 
   public async sendMessage({
@@ -33,36 +30,14 @@ class KafkaProvider implements IKafkaProvider {
       messages: [{ value: JSON.stringify({ submissionId, repositoryUrl }) }],
     });
 
+    await this.producer.disconnect();
+
     const submission: ICorrectLessonResponse = {
       submissionId,
       repositoryUrl,
       grade: 0,
       status: 'Pending',
     };
-
-    /*
-    await this.consumer.connect();
-    await this.consumer.subscribe({ topic: 'challenge.correction' });
-
-    let myMessage;
-    let response: ICorrectLessonResponse;
-    await this.consumer.run({
-      eachMessage: async ({ message }) => {
-        myMessage = message;
-      },
-    });
-
-    if (myMessage) {
-      response = JSON.parse(myMessage);
-    } else {
-      response = {
-        submissionId,
-        repositoryUrl,
-        grade: 0,
-        status: 'Pending',
-      };
-    }
-    */
 
     return submission;
   }
