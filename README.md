@@ -147,8 +147,8 @@ Mutation {
 - [x] Start docker containers
 - [x] Configurar ambiente de desenvolvimento (inclusive executar o serviço de [corrections](packages/corrections))
 - [x] Criar uma [API GraphQL](https://docs.nestjs.com/graphql/quick-start) com o [contexto](#-contexto) acima utilizando Typescript
-- [ ] Fazer a integração com o serviço de [corrections](packages/corrections) através do Apache Kafka
-- [ ] Incluir no README as instruções de instalação do projeto
+- [x] Fazer a integração com o serviço de [corrections](packages/corrections) através do Apache Kafka
+- [x] Incluir no README as instruções de instalação do projeto
 
 :information_source: _Sinta-se livre para incluir quaisquer observações que achar necessário_
 
